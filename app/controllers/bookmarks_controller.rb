@@ -1,6 +1,6 @@
 class BookmarksController < ApplicationController
-  before_action :get_bookmark, only [:edit, :update]
-  before_action :get_topic, only [:show, :new, :create, :destroy]
+  before_action :get_bookmark, only: [:edit, :update]
+  before_action :get_topic, only: [:show, :new, :create, :destroy]
   
   def show
     @bookmark = @topic.bookmarks.find(params[:id])
@@ -56,6 +56,6 @@ class BookmarksController < ApplicationController
   end
   
   def bookmark_params
-    params.require(:bookmark).permit(:url))
+    params.require(:bookmark).permit(:url)
   end
 end
