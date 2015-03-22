@@ -1,2 +1,13 @@
-<h1><%= @bookmark.url %></h1>
+<h1><%= @topic.title %></h1>
+<% if policy(@bookmark).destroy? %>
+  <%= link_to "Delete Bookmark", [@topic, @bookmark], method: :delete, class: 'btn btn-danger' %>
+<% end %>
+<% if policy(@bookmark).edit? %>
+  <%= link_to "Edit Bookmark", edit_topic_bookmark_path(@topic, @bookmark), class: 'btn btn-success' %>
+<% end %>
 
+<%= render partial: 'likes/like', locals: { bookmark: @bookmark, topic: @topic } %>
+
+<div class="media">
+  <h3><%= link_to @bookmark.url, @bookmark.url %></h3>
+</div>

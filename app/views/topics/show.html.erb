@@ -6,10 +6,10 @@
     </div>
     <div class="col-md-4">
       <% if policy(@topic).update? %>
-        <%= link_to "Edit Topic", edit_topic_path, class: 'btn btn-success' %>
+        <%= link_to "Edit Topic", edit_topic_path, class: 'btn btn-success btn-sm' %>
       <% end %>
       <% if policy(@topic).destroy? %>
-        <%= link_to "Delete Topic", @topic, method: :delete, class: 'btn btn-danger' %>
+        <%= link_to "Delete Topic", @topic, method: :delete, class: 'btn btn-danger btn-sm' %>
       <% end %>
     </div>
   </div>
