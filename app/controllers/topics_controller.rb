@@ -1,20 +1,25 @@
 class TopicsController < ApplicationController
+  before_action :authenticate_user!
   before_action :get_topic, only: [:edit, :show, :update, :destroy]
   
   def index
     @topics = Topic.all
+    authorize @topics
   end
 
   def show
-    @bookmarks = @topic.bookmarks
+    @bookmarks = @topic.bookmarks.includes(:user)
+    authorize @topic
   end
 
   def new
     @topic = Topic.new
+    authorize @topic
   end
 
   def create
     @topic = Topic.new(topic_params)
+    authorize @topic
     if @topic.save
       flash[:notice] = "Topic was saved."
       redirect_to @topic
@@ -25,9 +30,11 @@ class TopicsController < ApplicationController
   end
   
   def edit
+    authorize @topic
   end
   
   def update    
+     authorize @topic
      if @topic.update_attributes(topic_params)
        flash[:notice] = "Topic was updated."
        redirect_to @topic
@@ -38,6 +45,7 @@ class TopicsController < ApplicationController
    end
   
   def destory    
+    authorize @topic
     if @topic.destroy
        flash[:notice] = "Topic was deleted."
        redirect_to @topic

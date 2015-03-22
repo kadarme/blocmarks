@@ -1,4 +1,24 @@
-<h1><%= @topic.title %></h1>
-
-<%= link_to "Edit Topic", edit_topic_path, class: 'btn btn-success' %>
-<%= link_to "Delete Topic", @topic, method: :delete, class: 'btn btn-danger' %>
+<h3><%= @topic.title %></h3>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <%= link_to "Add Bookmark", new_topic_bookmark_path(@topic), class: 'btn btn-success btn-sm' %>
+    </div>
+    <div class="col-md-4">
+      <% if policy(@topic).update? %>
+        <%= link_to "Edit Topic", edit_topic_path, class: 'btn btn-success' %>
+      <% end %>
+      <% if policy(@topic).destroy? %>
+        <%= link_to "Delete Topic", @topic, method: :delete, class: 'btn btn-danger' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<br/>
+<div class="container">
+  <div class="row">
+    <% @bookmarks.each do |bookmark| %>
+      <%= render bookmark %>
+    <% end %>
+  </div>
+</div>
