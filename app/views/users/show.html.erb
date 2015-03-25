@@ -1,0 +1,30 @@
+<h2 class="text-center">My Bookmarks</h2>
+<div class="container">
+<div class="col-sm-3">
+  <div class="panel panel-success">
+    <div class="panel-heading">
+      <% @added_bookmarks.each do |bookmark| %>
+        <p><%= link_to bookmark.url, bookmark.url %></p>
+        <p><%= link_to "Delete Bookmark", [bookmark.topic, bookmark], method: :delete, class: 'btn btn-danger btn-sm' %><p>
+      <% end %>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<h2 class="text-center">My Likes</h2>
+<div class="container">
+<div class="col-sm-3">
+  <div class="panel panel-success">
+    <div class="panel-heading">
+      <% @liked_bookmarks.each do |like| %>
+        <p><%= link_to like.bookmark.url, like.bookmark.url %></p>
+        <p><%= render partial: 'likes/like', locals: { bookmark: like.bookmark } %><p>
+      <% end %>
+    </div>
+  </div>
+</div>
+</div>
+
+
