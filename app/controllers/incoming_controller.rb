@@ -6,7 +6,7 @@ class IncomingController < ApplicationController
   def create
      # Take a look at these in your server logs
      # to get a sense of what you're dealing with.
-    logger.info "INCOMING PARAMS HERE: #{params}"
+    logger.error "INCOMING PARAMS HERE: #{params}"
 
     # You put the message-splitting and business
     # magic here.
